@@ -57,20 +57,30 @@ Contains the .fastq file used to perform the analysis. The full FASTQ file can b
 
 #### Indexing and filtering out reads with low mapping quality scores
 
--F 2820: Removes reads matching any of the SAM flag bits that sum to 2820. the 2820 comprises: 4 → unmapped
+-F 2820: Removes reads matching any of the SAM flag bits that sum to 2820. the 2820 comprises: 
 
-    a) 8 → mate unmapped
+    a) 4 → unmapped
+
+    b) 8 → mate unmapped
     
-    b) 256 → secondary alignment
+    c) 256 → secondary alignment
     
-    c) 512 → QC fail
+    d) 512 → QC fail
     
-    d) 1024 → PCR/optical duplicate
+    e) 1024 → PCR/optical duplicate
     
-    e) 2048 → supplementary alignment
+    f) 2048 → supplementary alignment
 
 -q 30 (Minimum mapping quality): Keeps reads with mapping quality ≥ 30 (high-confidence alignments)
 
 -b: Outputs BAM instead of SAM
+
+#### Generaring the count matrix
+
+-t exon: Counts only reads overlapping exons.
+
+-g gene_id: Groups counts by gene ID to get gene-level expression.
+
+-a hg38.ensGene.gtf: Uses the Ensembl GTF annotation file
 
 -@ 4: Uses 4 CPU threads for faster processing
